@@ -1,0 +1,23 @@
+{
+  "name": "listener",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.5.3",
+    "dotenv": "^8.0.0",
+    "kafkajs": "^1.10.0",
+    "moment": "^2.24.0",
+    "net": "^1.0.2",
+    "pg": "^7.12.0",
+    "sequelize": "^5.11.0",
+    "uuid": "^3.3.2"
+  }
+}
