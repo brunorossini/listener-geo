@@ -4,11 +4,11 @@
 - Persiste o objeto no banco de dados _Postgres_
 - Repassa o objeto via _Kafka_ para o Microservice de Análise de Notificações
 
-#Dependências
+### Dependências
 - Node
 - Kafka
 - Postgres
 
-#Util
+### Util
 - Ao instalar rodar o comando _yarn install_ ou _npm install_ para instalar as bibliotecas do node
 
