@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../config/sequelize");
-const uuid = require("uuid/v4");
+// const uuid = require("uuid/v4");
 
 class Position extends Sequelize.Model {}
 
@@ -10,7 +10,7 @@ Position.init(
       allowNull: false,
       primaryKey: true,
       type: Sequelize.UUID,
-      defaultValue: uuid()
+      defaultValue: Sequelize.UUIDV4
     },
     header: Sequelize.STRING,
     imei: Sequelize.STRING,

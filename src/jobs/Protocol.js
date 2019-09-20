@@ -9,8 +9,6 @@ const RESPGTSTC = require("../protocols/RESPGTSTC");
 const RESPGTIGF = require("../protocols/RESPGTIGF");
 const RESPGTIGN = require("../protocols/RESPGTIGN");
 
-const Store = require("../jobs/Store");
-
 let Protocol = data => {
   let str_data;
   if (data[0] == "+") str_data = data.split(",");

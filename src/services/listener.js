@@ -1,6 +1,7 @@
 const net = require("net");
 let Protocol = require("../jobs/Protocol");
 let Store = require("../jobs/Store");
+let Debug = require("../jobs/Debug");
 
 let listener = function() {
   net
@@ -15,6 +16,7 @@ let listener = function() {
           position = data.split("\r")[0];
         }
         position = await Protocol(position);
+        Debug(position);
         if (position) Store(position);
       });
 
@@ -39,8 +41,40 @@ let position =
 // "ST300STT;007265506;40;313;20190718;20:19:00;59302;-20.362400;-040.659373;000.000;094.15;7;1;0;14.07;100000;1;0344;000002;4.1;1";
 
 // setInterval(() => {
-position = Protocol(position);
-Store(position);
+//   // position = Protocol(position);
+//   position = {
+//     header: "+RESP:GTFRI",
+//     firmware: "3C0303",
+//     imei: "862045030440699",
+//     device_model: "",
+//     power_voltage: 12.073,
+//     report_id: "10",
+//     satt: "3",
+//     speed: "93.0",
+//     angle: "0",
+//     altitude: "525.8",
+//     lng: "-40.659435",
+//     lat: "-20.362346",
+//     date: "2019-07-23",
+//     time: "14:02:29",
+//     mcc: "0724",
+//     mcn: "0011",
+//     lac: "18B7",
+//     cell_id: "2AE5",
+//     odometer: 882.2,
+//     hour_meter: "",
+//     battery_voltage: "81",
+//     device_status: "210100",
+//     ignition: true,
+//     input1: false,
+//     output1: false,
+//     output2: false,
+//     send_time: "20190722140243",
+//     count_number: "01A7$"
+//   };
+//   Debug(position);
+
+//   //   Store(position);
 // }, 1000);
 
 module.exports = listener;
