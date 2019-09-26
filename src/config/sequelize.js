@@ -1,8 +1,8 @@
 const Sequelize = require("sequelize");
 
-const sequelize = new Sequelize(
-  "postgres://postgres@localhost:5432/rastreador"
-);
+const sequelize = new Sequelize(process.env.POSTGRES_URL, {
+  logging: false
+});
 
 sequelize
   .authenticate()

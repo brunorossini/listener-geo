@@ -1,6 +1,5 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../config/sequelize");
-// const uuid = require("uuid/v4");
 
 class Position extends Sequelize.Model {}
 
