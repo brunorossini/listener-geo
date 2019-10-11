@@ -13,10 +13,11 @@ module.exports = data => {
     altitude: data[8],
     lng: data[9],
     lat: data[10],
-    date: moment(data[11], "YYYYMMDDHHmmss")
-      .format("YYYY-MM-DD")
-      .toString(),
-    time: moment(data[11], "YYYYMMDDHHmmss").format("HH:mm:ss"),
+    date: moment(data[11], "YYYYMMDDHHmmss"),
+    // date: moment(data[11], "YYYYMMDDHHmmss")
+    //   .format("YYYY-MM-DD")
+    //   .toString(),
+    // time: moment(data[11], "YYYYMMDDHHmmss").format("HH:mm:ss"),
     mcc: data[12],
     mcn: data[13],
     lac: data[14],

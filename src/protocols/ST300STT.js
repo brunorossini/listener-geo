@@ -1,13 +1,14 @@
 const moment = require("moment");
 
-module.exports = data => {
+module.exports = async data => {
   return {
     header: data[0],
     imei: data[1],
     device_model: data[2],
     firmware: data[3],
-    date: moment(data[4], "YYYYMMDD").format("YYYY-MM-DD"),
-    time: data[5],
+    date: moment(`${data[4]} ${data[5]}`, "YYYYMMDD HH:mm:ss"),
+    // date: moment(data[4], "YYYYMMDD").format("YYYY-MM-DD"),
+    // time: data[5],
     cell: data[6],
     lat: data[7],
     lng: data[8],

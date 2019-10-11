@@ -7,7 +7,7 @@ let Debug = position => {
 };
 
 io.on("connection", function(socket) {
-  console.log("a user connected");
+  // console.log("a user connected");
 });
 
 http.listen(process.env.PORT_DEBUG, function() {
