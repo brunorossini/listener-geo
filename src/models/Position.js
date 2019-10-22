@@ -5,12 +5,12 @@ class Position extends Sequelize.Model {}
 
 Position.init(
   {
-    id: {
-      allowNull: false,
-      primaryKey: true,
-      type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV4
-    },
+    // id: {
+    //   allowNull: false,
+    //   primaryKey: true,
+    //   type: Sequelize.UUID,
+    //   defaultValue: Sequelize.UUIDV4
+    // },
     header: Sequelize.STRING,
     imei: Sequelize.STRING,
     device_model: Sequelize.STRING,
