@@ -6,8 +6,8 @@ let moment = require("moment");
 var stan = require("node-nats-streaming").connect("test-cluster", "listener");
 
 let Store = async position => {
-  console.log(position.date);
   try {
+    position.date = position.date.subtract({ hours: 3 });
     let trackerItem = await TrackerItem.findOne({
       where: {
         device_id: position.imei
