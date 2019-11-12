@@ -7,12 +7,12 @@ module.exports = data => {
     imei: data[2],
     device_model: data[3],
     satt: data[4],
-    speed: data[5],
-    angle: data[6],
+    speed: parseInt(data[5]),
+    angle: parseInt(data[6]),
     altitude: data[7],
     lng: data[8],
     lat: data[9],
-    date: moment(data[10], "YYYYMMDDHHmmss"),
+    date: moment.utc(data[10], "YYYYMMDDHHmmss"),
     // date: moment(data[10], "YYYYMMDDHHmmss")
     //   .format("YYYY-MM-DD")
     //   .toString(),

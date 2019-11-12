@@ -10,12 +10,12 @@ module.exports = data => {
     report_id: data[5],
     // number: data[6],
     satt: data[7],
-    speed: data[8],
-    angle: data[9],
+    speed: parseInt(data[8]),
+    angle: parseInt(data[9]),
     altitude: data[10],
     lng: data[11],
     lat: data[12],
-    date: moment(data[13], "YYYYMMDDHHmmss"),
+    date: moment.utc(data[13], "YYYYMMDDHHmmss"),
     // date: moment(data[13], "YYYYMMDDHHmmss")
     //   .format("YYYY-MM-DD")
     //   .toString(),

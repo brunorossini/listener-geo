@@ -1,7 +1,11 @@
 const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize(process.env.POSTGRES_URL, {
-  logging: false
+  logging: false,
+  dialectOptions: {
+    useUTC: true //for reading from database
+  },
+  timezone: "America/Sao_Paulo"
 });
 
 sequelize

@@ -8,7 +8,6 @@ TrackerItem.init(
     label: Sequelize.STRING,
     type: Sequelize.STRING,
     active: Sequelize.BOOLEAN,
-    label_icon: Sequelize.STRING,
     brand: Sequelize.STRING,
     model: Sequelize.STRING,
     color: Sequelize.STRING,

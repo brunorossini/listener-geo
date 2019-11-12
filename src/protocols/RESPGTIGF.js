@@ -8,12 +8,12 @@ module.exports = data => {
     device_model: data[3],
     ignition_duration: data[4],
     satt: data[5],
-    speed: data[6],
-    angle: data[7],
+    speed: parseInt(data[6]),
+    angle: parseInt(data[7]),
     altitude: data[8],
     lng: data[9],
     lat: data[10],
-    date: moment(data[11], "YYYYMMDDHHmmss"),
+    date: moment.utc(data[11], "YYYYMMDDHHmmss"),
     // date: moment(data[11], "YYYYMMDDHHmmss")
     //   .format("YYYY-MM-DD")
     //   .toString(),

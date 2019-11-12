@@ -28,7 +28,7 @@ const vwBuffer = sequelize.define(
     label: Sequelize.STRING,
     type: Sequelize.STRING,
     // status: Sequelize.BOOLEAN,
-    label_icon: Sequelize.STRING,
+    // label_icon: Sequelize.STRING,
     brand: Sequelize.STRING,
     model: Sequelize.STRING,
     color: Sequelize.STRING,

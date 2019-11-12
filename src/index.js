@@ -2,8 +2,12 @@ require("dotenv").config();
 let listener = require("./services/listener");
 let listenerUDP = require("./services/udp");
 
+// let TrackerItem = require("./models/TrackerItem");
+// let Position = require("./models/Position");
+// TrackerItem.sync();
+// Position.sync();
 listener();
-listenerUDP();
+// listenerUDP();
 
 // const moment = require("moment");
 // const dateFns = require("date-fns");
