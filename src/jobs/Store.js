@@ -1,6 +1,6 @@
 let Position = require("../models/Position");
 let TrackerItem = require("../models/TrackerItem");
-let vwBuffer = require("../models/Buffer");
+let vwBuffer = require("../views/Buffer");
 let moment = require("moment");
 
 var stan = require("node-nats-streaming").connect("test-cluster", "listener");
@@ -16,6 +16,7 @@ let Store = async position => {
 
     if (trackerItem) {
       position.tracker_id = trackerItem.id;
+      evt = position.evt;
       // Position.sync({ force: true });
       try {
         position = await Position.create(position);
@@ -26,7 +27,7 @@ let Store = async position => {
       let buffer = await vwBuffer.findOne({
         where: { tracker_id: trackerItem.id }
       });
-      stan.publish("position", JSON.stringify({ position, trackerItem }));
+      stan.publish("position", JSON.stringify({ position, trackerItem, evt }));
       stan.publish("buffer", JSON.stringify(buffer));
     } else {
       console.log("DISPOSITIVO SEM ITEM VINCULADO: ", position.imei);

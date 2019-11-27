@@ -31,3 +31,15 @@ listener();
 // // const znDate = dateFns.zonedTimeToUtc(parsedDate, "America/Sao_Paulo");
 // // console.log(parsedDate);
 // Teste.create({ hora: date });
+// const Position = require("./models/Position");
+
+// getPosition = async () => {
+//   let position = await Position.findAll({
+//     // where: { imei },
+//     order: [["date", "DESC"]],
+//     limit: 1
+//   });
+//   console.log(position);
+// };
+
+// getPosition();

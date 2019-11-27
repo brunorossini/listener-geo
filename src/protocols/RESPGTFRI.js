@@ -12,7 +12,7 @@ module.exports = data => {
     satt: data[7],
     speed: parseInt(data[8]),
     angle: parseInt(data[9]),
-    altitude: data[10],
+    altitude: parseInt(data[10]),
     lng: data[11],
     lat: data[12],
     date: moment.utc(data[13], "YYYYMMDDHHmmss"),

@@ -9,6 +9,13 @@ let listenerUDP = function() {
 
   server.on("message", (msg, rinfo) => {
     console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
+    var ack = new Buffer.from("134");
+    server.send(ack, 0, ack.length, rinfo.port, rinfo.address, function(
+      err,
+      bytes
+    ) {
+      console.log("sent ACK.");
+    });
   });
 
   server.on("listening", () => {
