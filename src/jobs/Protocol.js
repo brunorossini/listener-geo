@@ -23,7 +23,6 @@ let Protocol = async data => {
       break;
     case "ST300UEX":
       position = protocols.ST300UEX(str_data);
-      console.log(position.ignition);
       if (position.ignition) position.evt = "DRIVER_ON";
       else position.evt = "DRIVER_OFF";
       break;
@@ -58,6 +57,10 @@ let Protocol = async data => {
       break;
     case "+BUFF:GTIGN":
       position = protocols.RESPGTIGN(str_data);
+      break;
+    // RST
+    case "RST":
+      position = protocols.RST(str_data);
       break;
     default:
       break;

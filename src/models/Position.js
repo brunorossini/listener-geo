@@ -57,7 +57,7 @@ Position.init(
     // lac: Sequelize.STRING,
     // tm_adv: Sequelize.STRING,
     // gps_on_off: Sequelize.STRING,
-    tracker_id: Sequelize.STRING,
+    tracker_id: Sequelize.INTEGER,
     ignition_duration: Sequelize.INTEGER,
     sleep_mode: Sequelize.BOOLEAN,
     altitude: Sequelize.STRING,

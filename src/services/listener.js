@@ -10,14 +10,14 @@ let listener = function() {
       socket.on("data", async data => {
         console.log(data);
         let position;
-        // console.log(data);
+        console.log(data);
         if (data.indexOf("$") >= -1) {
           position = data.split("$")[0];
         } else {
           position = data.split("\r")[0];
         }
         position = await Protocol(position);
-        Debug(position);
+        // Debug(position);
         if (position) Store(position);
       });
 

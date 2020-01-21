@@ -20,27 +20,6 @@ module.exports = data => {
     // distance: data[13],
     power_voltage: parseFloat(data[22]),
     battery_voltage: data[23],
-    odometer: data[24],
-
-    device_status: data[15],
-    ignition: data[15][0],
-    input1: data[15][1],
-    input2: data[15][2],
-    input3: data[15][3],
-    output1: data[15][4],
-    output2: data[15][5],
-    mode: data[16],
-    message_number: data[17],
-    msg_type: data[20],
-    rpm: data[21],
-    driver_id: data[22],
-    driver_registred: data[23],
-    cell_id: data[24],
-    mcc: data[25],
-    mnc: data[26],
-    rx_lvl: data[27],
-    lac: data[28],
-    tm_adv: data[29],
-    gps_on_off: data[30]
+    odometer: data[24]
   };
 };

@@ -41,7 +41,9 @@ const vwBuffer = sequelize.define(
     chassis: Sequelize.STRING,
     last_time_on: Sequelize.STRING,
     speed_max: Sequelize.INTEGER,
-    status: Sequelize.STRING
+    status: Sequelize.STRING,
+    driver: Sequelize.STRING,
+    driver_phone: Sequelize.STRING
   },
   {
     timestamps: false,
