@@ -18,11 +18,13 @@ let Store = async position => {
 
     if (trackerItem) {
       position.tracker_id = trackerItem.id;
-      sequelize
-        .query(queries.findLocation(position.lat, position.lng), {
+      const result = await sequelize.query(
+        queries.findLocation(position.lat, position.lng),
+        {
           type: sequelize.QueryTypes.SELECT
-        })
-        .then(result => console.log(result));
+        }
+      );
+      console.log(result);
       evt = position.evt;
       // Position.sync({ force: true });
       try {
