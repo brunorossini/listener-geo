@@ -24,7 +24,7 @@ let Store = async position => {
           type: sequelize.QueryTypes.SELECT
         }
       );
-      console.log(result);
+      position.address = result[0].address;
       evt = position.evt;
       // Position.sync({ force: true });
       try {

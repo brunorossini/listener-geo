@@ -61,7 +61,8 @@ Position.init(
     ignition_duration: Sequelize.INTEGER,
     sleep_mode: Sequelize.BOOLEAN,
     altitude: Sequelize.STRING,
-    data: Sequelize.STRING
+    data: Sequelize.STRING,
+    address: Sequelize.STRING
   },
   { sequelize, modelName: "position", timestamps: false }
 );
