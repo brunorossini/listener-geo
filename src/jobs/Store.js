@@ -1,3 +1,5 @@
+const sequelize = require("../config/sequelize");
+const queries = require("../queries");
 let Position = require("../models/Position");
 let TrackerItem = require("../models/TrackerItem");
 let vwBuffer = require("../views/Buffer");
@@ -16,6 +18,11 @@ let Store = async position => {
 
     if (trackerItem) {
       position.tracker_id = trackerItem.id;
+      sequelize
+        .query(queries.findLocation(position.lat, position.lng), {
+          type: sequelize.QueryTypes.SELECT
+        })
+        .then(result => console.log(result));
       evt = position.evt;
       // Position.sync({ force: true });
       try {
