@@ -6,9 +6,9 @@ class Device extends Sequelize.Model {}
 Device.init(
   {
     imei: { type: Sequelize.STRING, allowNull: false, primaryKey: true },
-    phone: { type: Sequelize.STRING, allowNull: false },
-    device_model: { type: Sequelize.STRING, allowNull: false },
-    device_type: { type: Sequelize.STRING, allowNull: false },
+    phone: { type: Sequelize.STRING, allowNull: true },
+    device_model: { type: Sequelize.STRING, allowNull: true },
+    device_type: { type: Sequelize.STRING, allowNull: true },
     input1: { type: Sequelize.STRING, allowNull: true },
     input2: { type: Sequelize.STRING, allowNull: true },
     input3: { type: Sequelize.STRING, allowNull: true },

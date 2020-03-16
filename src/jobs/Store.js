@@ -1,6 +1,7 @@
 const sequelize = require("../config/sequelize");
 const queries = require("../queries");
 let Position = require("../models/Position");
+let Device = require("../models/Device");
 let TrackerItem = require("../models/TrackerItem");
 let vwBuffer = require("../views/Buffer");
 let moment = require("moment");
@@ -9,6 +10,14 @@ var stan = require("node-nats-streaming").connect("test-cluster", "listener");
 
 let Store = async position => {
   try {
+    const existDevice = await Device.findOne({
+      where: {
+        imei: position.imei
+      }
+    });
+
+    if (!existDevice) await Device.create({ imei: position.imei });
+
     position.date = position.date;
     let trackerItem = await TrackerItem.findOne({
       where: {
