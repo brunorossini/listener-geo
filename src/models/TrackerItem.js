@@ -4,7 +4,7 @@ const Client = require("../models/Client");
 const Device = require("../models/Device");
 const Type = require("../models/Type");
 
-class TrackerItem extends Sequelize.Model { }
+class TrackerItem extends Sequelize.Model {}
 
 TrackerItem.init(
   {
@@ -65,7 +65,8 @@ TrackerItem.init(
       type: Sequelize.BOOLEAN,
       allowNull: true
     },
-    fences: { type: Sequelize.JSONB, allowNull: false }
+    fences: { type: Sequelize.JSONB, allowNull: true },
+    exceptions: { type: Sequelize.JSONB, allowNull: true }
   },
   {
     sequelize,

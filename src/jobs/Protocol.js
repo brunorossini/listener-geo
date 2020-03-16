@@ -11,9 +11,7 @@ let Protocol = async data => {
 
   // XEXUN
   if (!isNaN(str_data[0])) {
-    console.log(data);
     position = await protocols.XEXUN(str_data);
-    console.log(position);
   }
 
   switch (str_data[0]) {
