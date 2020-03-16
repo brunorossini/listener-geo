@@ -4,8 +4,7 @@ const sequelize = new Sequelize(process.env.POSTGRES_URL, {
   logging: false,
   dialectOptions: {
     useUTC: true //for reading from database
-  },
-  timezone: "America/Sao_Paulo"
+  }
 });
 
 sequelize

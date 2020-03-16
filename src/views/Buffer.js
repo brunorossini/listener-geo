@@ -32,8 +32,6 @@ const vwBuffer = sequelize.define(
     sleep_mode: Sequelize.BOOLEAN,
     label: Sequelize.STRING,
     type: Sequelize.STRING,
-    // status: Sequelize.BOOLEAN,
-    // label_icon: Sequelize.STRING,
     brand: Sequelize.STRING,
     model: Sequelize.STRING,
     color: Sequelize.STRING,
@@ -41,9 +39,11 @@ const vwBuffer = sequelize.define(
     chassis: Sequelize.STRING,
     last_time_on: Sequelize.STRING,
     speed_max: Sequelize.INTEGER,
-    status: Sequelize.STRING,
+    status: Sequelize.VIRTUAL,
     driver: Sequelize.STRING,
-    driver_phone: Sequelize.STRING
+    driver_phone: Sequelize.STRING,
+    image: Sequelize.STRING,
+    address: Sequelize.STRING
   },
   {
     timestamps: false,

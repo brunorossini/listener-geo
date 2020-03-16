@@ -16,7 +16,7 @@ module.exports = data => {
     angle: parseInt(data[10]),
     satt: data[11],
     gps_fix: data[12],
-    distance: data[13],
+    distance: data[19],
     power_voltage: data[14],
     ignition: data[15][0] == "0" ? false : true,
     input1: data[15][1],
@@ -27,7 +27,7 @@ module.exports = data => {
     lenght: data[16],
     data: data[17].split("|")[4],
     checksum: data[18],
-    odometer: data[19],
+    odometer: data[13],
     battery_voltage: data[20],
     msg_type: data[21]
   };

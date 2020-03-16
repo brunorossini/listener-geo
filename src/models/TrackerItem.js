@@ -2,14 +2,22 @@ const Sequelize = require("sequelize");
 const sequelize = require("../config/sequelize");
 const Client = require("../models/Client");
 const Device = require("../models/Device");
-const User = require("../models/User");
+const Type = require("../models/Type");
 
-class TrackerItem extends Sequelize.Model {}
+class TrackerItem extends Sequelize.Model { }
 
 TrackerItem.init(
   {
     label: { type: Sequelize.STRING, allowNull: false },
-    type: { type: Sequelize.STRING, allowNull: false },
+    type_id: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      references: {
+        model: Type,
+        key: "id",
+        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+      }
+    },
     active: { type: Sequelize.BOOLEAN, allowNull: true, defaultValue: true },
     brand: { type: Sequelize.STRING, allowNull: true },
     model: { type: Sequelize.STRING, allowNull: true },
@@ -28,8 +36,8 @@ TrackerItem.init(
       allowNull: true,
       references: {
         model: Device,
-        key: "imei",
-        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+        key: "imei"
+        // deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
       }
     },
     driving_time_start: { type: Sequelize.TIME, allowNull: false },
@@ -53,14 +61,11 @@ TrackerItem.init(
         deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
       }
     },
-    fence_id: {
-      type: Sequelize.INTEGER,
-      allowNull: true
-    },
     weekend: {
       type: Sequelize.BOOLEAN,
       allowNull: true
-    }
+    },
+    fences: { type: Sequelize.JSONB, allowNull: false }
   },
   {
     sequelize,
@@ -69,12 +74,19 @@ TrackerItem.init(
   }
 );
 
+TrackerItem.belongsTo(Type, {
+  foreignKey: "type_id"
+});
+
 TrackerItem.belongsTo(Client, {
   foreignKey: "client_id"
 });
 
 TrackerItem.belongsTo(Device, {
-  foreignKey: "device_id"
+  foreignKey: {
+    name: "device_id",
+    allowNull: true
+  }
 });
 // TrackerItem.belongsToMany(User, {
 //   through: "UserTrackerItem",
