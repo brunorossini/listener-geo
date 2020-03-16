@@ -7,8 +7,8 @@ Device.init(
   {
     imei: { type: Sequelize.STRING, allowNull: false, primaryKey: true },
     phone: { type: Sequelize.STRING, allowNull: true },
-    device_model: { type: Sequelize.STRING, allowNull: true },
-    device_type: { type: Sequelize.STRING, allowNull: true },
+    model: { type: Sequelize.STRING, allowNull: true },
+    type: { type: Sequelize.STRING, allowNull: true },
     input1: { type: Sequelize.STRING, allowNull: true },
     input2: { type: Sequelize.STRING, allowNull: true },
     input3: { type: Sequelize.STRING, allowNull: true },
@@ -24,5 +24,7 @@ Device.init(
   },
   { sequelize, modelName: "device", timestamps: false }
 );
+
+// Device.sync({ force: true });
 
 module.exports = Device;
