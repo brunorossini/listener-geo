@@ -8,7 +8,6 @@ let listener = function() {
     .createServer(socket => {
       socket.setEncoding("utf8");
       socket.on("data", async data => {
-        console.log(data);
         let position;
         console.log(data);
         if (data.indexOf("$") >= -1) {
@@ -18,7 +17,7 @@ let listener = function() {
         }
         position = await Protocol(position);
         // Debug(position);
-        if (position) Store(position);
+        if (position && position.date) Store(position);
       });
 
       socket.on("error", function() {

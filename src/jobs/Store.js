@@ -9,7 +9,7 @@ var stan = require("node-nats-streaming").connect("test-cluster", "listener");
 
 let Store = async position => {
   try {
-    position.date = position.date.subtract({ hours: 3 });
+    position.date = position.date;
     let trackerItem = await TrackerItem.findOne({
       where: {
         device_id: position.imei
@@ -18,24 +18,21 @@ let Store = async position => {
 
     if (trackerItem) {
       position.tracker_id = trackerItem.id;
-      const result = await sequelize.query(
-        queries.findLocation(position.lat, position.lng),
-        {
-          type: sequelize.QueryTypes.SELECT
-        }
-      );
-      position.address = result[0].address;
-      evt = position.evt;
-      // Position.sync({ force: true });
-      try {
-        position = await Position.create(position);
-      } catch (error) {
-        console.log(error);
-      }
 
+      evt = position.evt;
+      position = await Position.create(position);
       let buffer = await vwBuffer.findOne({
         where: { tracker_id: trackerItem.id }
       });
+
+      let diff = moment().diff(moment(buffer.date), "minutes");
+      if (diff >= 10) buffer.status = "DISCONNECTED";
+      else if (diff < 10 && buffer.ignition && buffer.speed <= buffer.speed_max)
+        buffer.status = "ON";
+      else if (diff < 10 && buffer.ignition && buffer.speed > buffer.speed_max)
+        buffer.status = "DANGER";
+      else if (diff < 10 && !buffer.ignition) buffer.status = "OFF";
+
       stan.publish("position", JSON.stringify({ position, trackerItem, evt }));
       stan.publish("buffer", JSON.stringify(buffer));
     } else {

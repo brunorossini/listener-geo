@@ -3,10 +3,17 @@ const Position = require("../models/Position");
 
 let Protocol = async data => {
   let str_data;
-  if (data[0] == "+") str_data = data.split(",");
+
+  if (data[0] == "+" || !isNaN(data[0])) str_data = data.split(",");
   else str_data = data.split(";");
 
   let position;
+
+  // XEXUN
+  if (!isNaN(str_data[0])) {
+    position = await protocols.XEXUN(str_data);
+  }
+
   switch (str_data[0]) {
     // SUNTECH
     case "ST300STT":
