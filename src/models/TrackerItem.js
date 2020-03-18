@@ -3,7 +3,6 @@ const sequelize = require("../config/sequelize");
 const Client = require("../models/Client");
 const Device = require("../models/Device");
 const Type = require("../models/Type");
-const sequelizePaginate = require("sequelize-paginate");
 
 class TrackerItem extends Sequelize.Model {}
 
@@ -97,7 +96,5 @@ TrackerItem.belongsTo(Device, {
 //   foreignKey: "tracker_id",
 //   otherKey: "user_id"
 // });
-
-sequelizePaginate.paginate(TrackerItem);
 
 module.exports = TrackerItem;
