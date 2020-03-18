@@ -3,6 +3,7 @@ const sequelize = require("../config/sequelize");
 const Client = require("../models/Client");
 const Device = require("../models/Device");
 const Type = require("../models/Type");
+const sequelizePaginate = require("sequelize-paginate");
 
 class TrackerItem extends Sequelize.Model {}
 
@@ -66,7 +67,8 @@ TrackerItem.init(
       allowNull: true
     },
     fences: { type: Sequelize.JSONB, allowNull: true },
-    exceptions: { type: Sequelize.JSONB, allowNull: true }
+    exceptions: { type: Sequelize.JSONB, allowNull: true },
+    average: { type: Sequelize.FLOAT, allowNull: true }
   },
   {
     sequelize,
@@ -95,5 +97,7 @@ TrackerItem.belongsTo(Device, {
 //   foreignKey: "tracker_id",
 //   otherKey: "user_id"
 // });
+
+sequelizePaginate.paginate(TrackerItem);
 
 module.exports = TrackerItem;
