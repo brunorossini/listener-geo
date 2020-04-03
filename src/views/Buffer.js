@@ -43,7 +43,8 @@ const vwBuffer = sequelize.define(
     driver: Sequelize.STRING,
     driver_phone: Sequelize.STRING,
     image: Sequelize.STRING,
-    alert_on: Sequelize.STRING
+    alert_on: Sequelize.STRING,
+    driver_image: Sequelize.STRING
   },
   {
     timestamps: false,
