@@ -6,7 +6,7 @@
 
 ### Dependências
 - Node
-- Kafka
+- Nats
 - Postgres
 
 ### Util
