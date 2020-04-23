@@ -1,7 +1,7 @@
 const protocols = require("../protocols");
 const Position = require("../models/Position");
 
-let Protocol = async data => {
+let Protocol = async (data) => {
   let str_data;
 
   if (data[0] == "+" || !isNaN(data[0])) str_data = data.split(",");
@@ -12,6 +12,7 @@ let Protocol = async data => {
   // XEXUN
   if (!isNaN(str_data[0])) {
     position = await protocols.XEXUN(str_data);
+    if (position.imei.length != 15) return;
   }
 
   switch (str_data[0]) {
