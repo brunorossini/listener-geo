@@ -3,6 +3,12 @@ let Protocol = require("../jobs/Protocol");
 let Store = require("../jobs/Store");
 let Debug = require("../jobs/Debug");
 
+let worker = async (position) => {
+  position = await Protocol(position);
+  // Debug(position);
+  if (position && position.date) Store(position);
+}
+
 let listener = function() {
   net
     .createServer(socket => {
@@ -14,9 +20,7 @@ let listener = function() {
         } else {
           position = data.split("\r")[0];
         }
-        position = await Protocol(position);
-        // Debug(position);
-        if (position && position.date) Store(position);
+        worker(position)
       });
 
       socket.on("error", function() {
