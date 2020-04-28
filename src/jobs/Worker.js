@@ -9,4 +9,4 @@ class Worker {
   }
 }
 
-module.exports = Worker
+module.exports = new Worker()
