@@ -13,7 +13,7 @@ let listener = function() {
         } else {
           position = data.split("\r")[0];
         }
-        new Worker.run(position)
+        Worker.run(position)
       });
 
       socket.on("error", function() {
