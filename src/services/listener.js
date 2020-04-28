@@ -1,13 +1,6 @@
 const net = require("net");
-let Protocol = require("../jobs/Protocol");
-let Store = require("../jobs/Store");
 let Debug = require("../jobs/Debug");
-
-let worker = async (position) => {
-  position = await Protocol(position);
-  // Debug(position);
-  if (position && position.date) Store(position);
-}
+let Worker = require("../jobs/Worker")
 
 let listener = function() {
   net
@@ -20,7 +13,7 @@ let listener = function() {
         } else {
           position = data.split("\r")[0];
         }
-        worker(position)
+        new Worker.run(position)
       });
 
       socket.on("error", function() {
