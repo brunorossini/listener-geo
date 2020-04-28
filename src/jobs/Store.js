@@ -8,12 +8,12 @@ let moment = require("moment");
 
 var stan = require("node-nats-streaming").connect("test-cluster", "listener");
 
-let Store = async position => {
+let Store = async (position) => {
   try {
     const existDevice = await Device.findOne({
       where: {
-        imei: position.imei
-      }
+        imei: position.imei,
+      },
     });
 
     if (!existDevice) await Device.create({ imei: position.imei });
@@ -21,8 +21,8 @@ let Store = async position => {
     position.date = position.date;
     let trackerItem = await TrackerItem.findOne({
       where: {
-        device_id: position.imei
-      }
+        device_id: position.imei,
+      },
     });
 
     if (trackerItem) {
@@ -31,7 +31,7 @@ let Store = async position => {
       evt = position.evt;
       position = await Position.create(position);
       let buffer = await vwBuffer.findOne({
-        where: { tracker_id: trackerItem.id }
+        where: { tracker_id: trackerItem.id },
       });
 
       let diff = moment().diff(moment(buffer.date), "minutes");
@@ -45,7 +45,6 @@ let Store = async position => {
       stan.publish("position", JSON.stringify({ position, trackerItem, evt }));
       stan.publish("buffer", JSON.stringify(buffer));
     } else {
-      console.log("DISPOSITIVO SEM ITEM VINCULADO: ", position.imei);
       await Position.create(position);
     }
   } catch (error) {
