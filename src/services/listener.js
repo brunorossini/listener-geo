@@ -16,7 +16,9 @@ let listener = function() {
         Worker.run(position)
       });
 
-      socket.on("error", function() {
+      socket.on("error", function(err) {
+        console.error('Connection error: ' + err);
+        // console.error(new Error().stack);
         console.log("\n Cliente desconectao por erro ");
       });
     })
