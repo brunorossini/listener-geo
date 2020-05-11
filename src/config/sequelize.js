@@ -3,8 +3,13 @@ const Sequelize = require("sequelize");
 const sequelize = new Sequelize(process.env.POSTGRES_URL, {
   logging: false,
   dialectOptions: {
-    useUTC: true //for reading from database
-  }
+    useUTC: true, //for reading from database
+  },
+  pool: {
+    max: 50,
+    min: 0,
+    idle: 10000,
+  },
 });
 
 sequelize
@@ -12,7 +17,7 @@ sequelize
   .then(() => {
     console.log("Connection has been established successfully.");
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Unable to connect to the database:", err);
   });
 
