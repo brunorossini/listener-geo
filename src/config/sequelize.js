@@ -6,7 +6,7 @@ const sequelize = new Sequelize(process.env.POSTGRES_URL, {
     useUTC: true, //for reading from database
   },
   pool: {
-    max: 100,
+    max: 50,
     min: 0,
     idle: 10000,
   },
