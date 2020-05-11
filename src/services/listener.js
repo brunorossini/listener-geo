@@ -1,5 +1,4 @@
 const net = require("net");
-let Debug = require("../jobs/Debug");
 let Worker = require("../jobs/Worker")
 
 let listener = function() {
@@ -7,6 +6,8 @@ let listener = function() {
     .createServer(socket => {
       socket.setEncoding("utf8");
       socket.on("data", async data => {
+        if(data.indexOf('007503739') !== -1)
+          console.log(data)
         let position;
         if (data.indexOf("$") >= -1) {
           position = data.split("$")[0];
@@ -18,7 +19,6 @@ let listener = function() {
 
       socket.on("error", function(err) {
         console.error('Connection error: ' + err);
-        // console.error(new Error().stack);
         console.log("\n Cliente desconectao por erro ");
       });
     })
