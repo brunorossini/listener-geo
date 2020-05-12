@@ -27,10 +27,12 @@ const vwBuffer = sequelize.define(
     output5: Sequelize.BOOLEAN,
     output6: Sequelize.BOOLEAN,
     odometer: Sequelize.FLOAT,
+    h_meter: Sequelize.INTEGER,
     battery_voltage: Sequelize.FLOAT,
     ignition_duration: Sequelize.INTEGER,
     sleep_mode: Sequelize.BOOLEAN,
     label: Sequelize.STRING,
+    plate: Sequelize.STRING,
     type: Sequelize.STRING,
     brand: Sequelize.STRING,
     model: Sequelize.STRING,
@@ -39,6 +41,7 @@ const vwBuffer = sequelize.define(
     chassis: Sequelize.STRING,
     last_time_on: Sequelize.STRING,
     speed_max: Sequelize.INTEGER,
+    rpm: Sequelize.INTEGER,
     status: Sequelize.VIRTUAL,
     driver: Sequelize.STRING,
     driver_phone: Sequelize.STRING,
@@ -46,12 +49,13 @@ const vwBuffer = sequelize.define(
     alert_on: Sequelize.STRING,
     driver_image: Sequelize.STRING,
     client_id: Sequelize.STRING,
-    client_name: Sequelize.STRING
+    client_name: Sequelize.STRING,
+    hour_meter: Sequelize.BOOLEAN,
   },
   {
     timestamps: false,
     freezeTableName: true,
-    tableName: "vw_buffer"
+    tableName: "vw_buffer",
   }
 );
 
