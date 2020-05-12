@@ -1,6 +1,6 @@
 const moment = require("moment");
 
-module.exports = data => {
+module.exports = (data) => {
   return {
     header: data[0],
     firmware: data[1],
@@ -25,6 +25,6 @@ module.exports = data => {
     //field15 reserved
     send_time: data[17],
     count_number: data[18],
-    sleep_mode: true
+    sleep_mode: true,
   };
 };

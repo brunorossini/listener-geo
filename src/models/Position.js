@@ -26,7 +26,7 @@ Position.init(
     altitude: Sequelize.SMALLINT,
     satt: Sequelize.INTEGER,
     // gps_fix: Sequelize.INTEGER,
-    // distance: Sequelize.FLOAT,
+    h_meter: Sequelize.INTEGER,
     power_voltage: Sequelize.DOUBLE,
     device_status: Sequelize.STRING,
     ignition: Sequelize.BOOLEAN,
@@ -62,7 +62,7 @@ Position.init(
     sleep_mode: Sequelize.BOOLEAN,
     altitude: Sequelize.STRING,
     data: Sequelize.STRING,
-    address: Sequelize.STRING
+    address: Sequelize.STRING,
   },
   { sequelize, modelName: "position", timestamps: false }
 );
