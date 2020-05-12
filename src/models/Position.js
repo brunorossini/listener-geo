@@ -63,6 +63,7 @@ Position.init(
     altitude: Sequelize.STRING,
     data: Sequelize.STRING,
     address: Sequelize.STRING,
+    hour_meter: Sequelize.BOOLEAN,
   },
   { sequelize, modelName: "position", timestamps: false }
 );
