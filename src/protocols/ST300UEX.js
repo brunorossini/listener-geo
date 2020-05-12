@@ -1,6 +1,6 @@
 const moment = require("moment");
 
-module.exports = data => {
+module.exports = (data) => {
   return {
     header: data[0],
     imei: data[1],
@@ -16,7 +16,7 @@ module.exports = data => {
     angle: parseInt(data[10]),
     satt: data[11],
     gps_fix: data[12],
-    distance: data[19],
+    h_meter: data[19],
     power_voltage: data[14],
     ignition: data[15][0] == "0" ? false : true,
     input1: data[15][1],
@@ -29,6 +29,6 @@ module.exports = data => {
     checksum: data[18],
     odometer: data[13],
     battery_voltage: data[20],
-    msg_type: data[21]
+    msg_type: data[21],
   };
 };
