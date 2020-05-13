@@ -12,7 +12,7 @@ let listener = function () {
           position = data.split("$")[0];
           Worker.run(position);
         } else {
-          positions = data.split("\r");
+          positions = data.split("\n");
           positions.map((position) => Worker.run(position));
         }
       });
