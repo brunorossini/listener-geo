@@ -1,9 +1,22 @@
 const net = require("net");
 let Worker = require("../jobs/Worker");
+const carrier = require("carrier");
 
 let listener = function () {
   net
     .createServer((socket) => {
+      carrier.carry(socket, function (line) {
+        if (line.indexOf("007503739") !== -1) console.log(line);
+        let position;
+        if (line.indexOf("$") >= -1) {
+          position = line.split("$")[0];
+          Worker.run(position);
+        } else {
+          position = Worker.run(line);
+          // positions.map((position) => Worker.run(position));
+        }
+      });
+
       socket.setEncoding("utf8");
       socket.on("data", async (data) => {
         if (data.indexOf("007503739") !== -1) console.log(data);
