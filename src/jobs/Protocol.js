@@ -10,6 +10,7 @@ let Protocol = async (data) => {
   let position;
 
   // XEXUN
+  console.log(data);
   if (!isNaN(str_data[0])) {
     position = await protocols.XEXUN(str_data);
     if (position.imei.length != 15) return;
