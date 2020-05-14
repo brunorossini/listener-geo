@@ -5,7 +5,7 @@ let Device = require("../models/Device");
 let TrackerItem = require("../models/TrackerItem");
 let vwBuffer = require("../views/Buffer");
 let moment = require("moment");
-const sequelize = require("../src/config/sequelize");
+const sequelize = require("../config/sequelize");
 const queries = require("../src/queries");
 
 var stan = require("node-nats-streaming").connect("test-cluster", "listener");
