@@ -5,6 +5,8 @@ let Device = require("../models/Device");
 let TrackerItem = require("../models/TrackerItem");
 let vwBuffer = require("../views/Buffer");
 let moment = require("moment");
+const sequelize = require("../src/config/sequelize");
+const queries = require("../src/queries");
 
 var stan = require("node-nats-streaming").connect("test-cluster", "listener");
 
@@ -44,7 +46,18 @@ let Store = async (position, io) => {
 
       stan.publish("position", JSON.stringify({ position, trackerItem, evt }));
       stan.publish("buffer", JSON.stringify(buffer));
-      io.emit("position", buffer);
+
+      sequelize.query(queries.rulesSocket(buffer.tracker_id), (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          result.rows.map((row) => {
+            io.of(`/buffer:`).on("connection", (socket) => {
+              socket.emit("position", buffer);
+            });
+          });
+        }
+      });
     } else {
       await Position.create(position);
     }
