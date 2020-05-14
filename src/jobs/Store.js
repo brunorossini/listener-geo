@@ -43,6 +43,7 @@ let Store = async (position, io) => {
       else if (diff < 10 && !buffer.ignition) buffer.status = "OFF";
 
       stan.publish("position", JSON.stringify({ position, trackerItem, evt }));
+      stan.publish("buffer", JSON.stringify(buffer));
       io.emit("position", buffer);
     } else {
       await Position.create(position);
