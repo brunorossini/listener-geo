@@ -44,19 +44,7 @@ let Store = async (position, io) => {
 
       stan.publish("position", JSON.stringify({ position, trackerItem, evt }));
       stan.publish("buffer", JSON.stringify(buffer));
-
-      sequelize.query(queries.rulesSocket(buffer.tracker_id), (err, result) => {
-        if (err) {
-          console.log(err);
-        } else {
-          result.rows.map((row) => {
-            if (row.user_id === 14) console.log(buffer);
-            io.of(`/buffer:${row.user_id}`).on("connection", (socket) => {
-              socket.emit("position", buffer);
-            });
-          });
-        }
-      });
+      io.emit("position", buffer);
     } else {
       await Position.create(position);
     }
