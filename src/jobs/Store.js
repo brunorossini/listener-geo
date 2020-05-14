@@ -8,7 +8,7 @@ let moment = require("moment");
 
 var stan = require("node-nats-streaming").connect("test-cluster", "listener");
 
-let Store = async (position) => {
+let Store = async (position, io) => {
   try {
     const existDevice = await Device.findOne({
       where: {
