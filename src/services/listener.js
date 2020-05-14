@@ -1,7 +1,7 @@
 const net = require("net");
 let Worker = require("../jobs/Worker");
 const carrier = require("carrier");
-const io = require("socket.io")(9999);
+const io = require("socket.io")(80);
 
 let listener = function () {
   net
