@@ -50,7 +50,7 @@ let Store = async (position, io) => {
           console.log(err);
         } else {
           result.rows.map((row) => {
-            io.of(`/buffer:`).on("connection", (socket) => {
+            io.of(`/buffer:${row.user_id}`).on("connection", (socket) => {
               socket.emit("position", buffer);
             });
           });
