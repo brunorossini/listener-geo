@@ -25,7 +25,7 @@ module.exports = data => {
     lac: data[16],
     cell_id: data[17],
     // field18 reserved
-    odometer: parseFloat(data[19]),
+    odometer: parseFloat(data[19]) * 1000,
     hour_meter: data[20],
     // field21 reserved
     // field22 reserved
