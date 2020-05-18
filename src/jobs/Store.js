@@ -44,7 +44,7 @@ let Store = async (position, io) => {
 
       stan.publish("position", JSON.stringify({ position, trackerItem, evt }));
       stan.publish("buffer", JSON.stringify(buffer));
-      io.emit("position", buffer);
+      io.emit("position", { test: buffer });
     } else {
       await Position.create(position);
     }
