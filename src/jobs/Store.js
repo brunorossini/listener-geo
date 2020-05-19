@@ -5,6 +5,7 @@ let Device = require("../models/Device");
 let TrackerItem = require("../models/TrackerItem");
 let vwBuffer = require("../views/Buffer");
 let moment = require("moment");
+let Cache = require("../services/Cache");
 
 var stan = require("node-nats-streaming").connect("test-cluster", "listener");
 
@@ -44,7 +45,13 @@ let Store = async (position, io) => {
 
       stan.publish("position", JSON.stringify({ position, trackerItem, evt }));
       stan.publish("buffer", JSON.stringify(buffer));
-      io.emit("position", { test: buffer });
+
+      if (Cache.get(`buffer:${trackerItem.id}`)) {
+        Cache.invalidatePreffix(`buffer:${trackerItem.id}`);
+        Cache.set(`buffer:${trackerItem.id}`, position);
+      } else {
+        Cache.set(`buffer:${trackerItem.id}`, position);
+      }
     } else {
       await Position.create(position);
     }
