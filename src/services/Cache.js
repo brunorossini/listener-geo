@@ -1,4 +1,4 @@
-import Redis from "ioredis";
+const Redis = require("ioredis");
 
 class Cache {
   constructor() {
@@ -34,4 +34,4 @@ class Cache {
   }
 }
 
-export default new Cache();
+module.exports = new Cache();
