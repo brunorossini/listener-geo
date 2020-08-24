@@ -8,7 +8,7 @@ let listener = function () {
     .createServer((socket) => {
       socket.setEncoding("utf8");
       socket.on("data", async (data) => {
-        if (data.indexOf("007503739") !== -1) console.log(data);
+        if (data.indexOf("862045030410130") !== -1) console.log(data);
         let position;
         if (data.indexOf("$") >= -1) {
           position = data.split("$")[0];
