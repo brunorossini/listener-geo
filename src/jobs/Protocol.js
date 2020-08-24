@@ -45,10 +45,10 @@ let Protocol = async (data) => {
       position = protocols.RESPGTSTC(str_data);
       break;
     case "+RESP:GTIGF":
-      position = protocols.RESPGTIGF(str_data);
+      // position = protocols.RESPGTIGF(str_data);
       break;
     case "+RESP:GTIGN":
-      position = protocols.RESPGTIGN(str_data);
+      // position = protocols.RESPGTIGN(str_data);
       break;
     // QUECKLINK BUFF
     case "+BUFF:GTFRI":
@@ -61,10 +61,10 @@ let Protocol = async (data) => {
       position = protocols.RESPGTSTC(str_data);
       break;
     case "+BUFF:GTIGF":
-      position = protocols.RESPGTIGF(str_data);
+      // position = protocols.RESPGTIGF(str_data);
       break;
     case "+BUFF:GTIGN":
-      position = protocols.RESPGTIGN(str_data);
+      // position = protocols.RESPGTIGN(str_data);
       break;
     // RST
     case "RST":
