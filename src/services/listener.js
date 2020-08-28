@@ -8,7 +8,7 @@ let listener = function () {
     .createServer((socket) => {
       socket.setEncoding("utf8");
       socket.on("data", async (data) => {
-        if (data.indexOf("862045030410130") !== -1) console.log(data);
+        if (data.indexOf("007142163") !== -1) console.log(0, data);
         let position;
         if (data.indexOf("$") >= -1) {
           position = data.split("$")[0];
@@ -20,7 +20,7 @@ let listener = function () {
       });
 
       socket.on("error", function (err) {
-        console.error("Connection error: " + err);
+        // console.error("Connection error: " + err);
         console.log("\n Cliente desconectao por erro ");
       });
     })
