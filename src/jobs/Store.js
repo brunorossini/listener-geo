@@ -1,6 +1,6 @@
 const sequelize = require("../config/sequelize");
 const queries = require("../queries");
-const { setOnline } = require("../services/KeyExpire");
+const { setOnline } = require("../services/setOnline");
 let Position = require("../models/Position");
 let Device = require("../models/Device");
 let TrackerItem = require("../models/TrackerItem");
