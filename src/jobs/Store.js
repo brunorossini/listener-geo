@@ -1,12 +1,13 @@
 const sequelize = require("../config/sequelize");
 const queries = require("../queries");
+const listedOnline = require("../services/listedOnline");
 let Position = require("../models/Position");
 let Device = require("../models/Device");
 let TrackerItem = require("../models/TrackerItem");
 let vwBuffer = require("../views/Buffer");
 let moment = require("moment");
 let Cache = require("../services/Cache");
-let axios = require("axios")
+let axios = require("axios");
 
 var stan = require("node-nats-streaming").connect("test-cluster", "listener");
 
@@ -33,10 +34,22 @@ let Store = async (position, io) => {
       evt = position.evt;
 
       /// let url = `https://location.jeudi.dev/reverse.php?format=json&lat=${position.lat}&lon=${position.lng}&zoom=16`
-      let url = `http://localhost:7070/reverse.php?format=json&lat=${position.lat}&lon=${position.lng}&zoom=16`
-      const response = await axios.get(url)
-      const {road, suburb, city_district, city, village, town, state} = response.data.address
-      position.address = `${road ? road + ', ' : ''}${suburb ? suburb + ', ' : ''}${city_district ? city_district + ', ' : ''}${city || town || village} - ${state}`
+      let url = `http://localhost:7070/reverse.php?format=json&lat=${position.lat}&lon=${position.lng}&zoom=16`;
+      const response = await axios.get(url);
+      const {
+        road,
+        suburb,
+        city_district,
+        city,
+        village,
+        town,
+        state,
+      } = response.data.address;
+      position.address = `${road ? road + ", " : ""}${
+        suburb ? suburb + ", " : ""
+      }${city_district ? city_district + ", " : ""}${
+        city || town || village
+      } - ${state}`;
 
       position = await Position.create(position);
       // let buffer = await vwBuffer.findOne({
@@ -59,12 +72,8 @@ let Store = async (position, io) => {
       } else {
         Cache.set(`buffer:${trackerItem.id}`, position);
       }
-      
-      const isListedOffline = await Cache.get(`offline:${trackerItem.id}`)
-      if (isListedOffline) {
-	      console.log('to excluindo do redis', isListedOffline)
-        await Cache.invalidate(`offline:${trackerItem.id}`)
-      }
+
+      listedOnline(trackerItem.id, position);
     } else {
       await Position.create(position);
     }
