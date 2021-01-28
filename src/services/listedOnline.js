@@ -19,4 +19,4 @@ const setListOnline = async (tracker_id, position) => {
   client.expire(key, 60 * 60);
 };
 
-module.exports = setListOffline;
+module.exports = setListOnline;
