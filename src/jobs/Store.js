@@ -1,6 +1,6 @@
 const sequelize = require("../config/sequelize");
 const queries = require("../queries");
-const listedOnline = require("../services/listedOnline");
+const { setOnline } = require("../services/KeyExpire");
 let Position = require("../models/Position");
 let Device = require("../models/Device");
 let TrackerItem = require("../models/TrackerItem");
@@ -73,7 +73,7 @@ let Store = async (position, io) => {
         Cache.set(`buffer:${trackerItem.id}`, position);
       }
 
-      listedOnline(trackerItem.id, position);
+      setOnline(trackerItem.id, position);
     } else {
       await Position.create(position);
     }
