@@ -59,6 +59,12 @@ let Store = async (position, io) => {
       } else {
         Cache.set(`buffer:${trackerItem.id}`, position);
       }
+      
+      const isListedOffline = await Cache.get(`offline:${trackerItem.id}`)
+      if (isListedOffline) {
+	      console.log('to excluindo do redis', isListedOffline)
+        await Cache.invalidate(`offline:${trackerItem.id}`)
+      }
     } else {
       await Position.create(position);
     }

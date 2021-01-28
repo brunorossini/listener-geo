@@ -31,6 +31,10 @@ let Protocol = async (data) => {
       break;
     case "ST300UEX":
       position = protocols.ST300UEX(str_data);
+      if(position.imei === '205796570') {
+        if(position.ignition) console.log('LUCAS LIGOU O CARRO')
+        else console.log('LUCAS DESLIGOU O CARRO')
+      }
       if (position.ignition) position.evt = "DRIVER_ON";
       else position.evt = "DRIVER_OFF";
       break;

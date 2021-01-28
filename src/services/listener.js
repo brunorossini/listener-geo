@@ -8,7 +8,10 @@ let listener = function () {
     .createServer((socket) => {
       socket.setEncoding("utf8");
       socket.on("data", async (data) => {
-        if (data.indexOf("007142163") !== -1) console.log(0, data);
+        if (data.indexOf("205796570") !== -1) console.log(0, data);
+        // console.log({ data })
+        /// if (data.indexOf("907142244") !== -1) console.log('placa:MOY-3A78', data);
+	      /// if (data.indexOf("907142225") !== -1) console.log('placa:MTY-8832', data);
         let position;
         if (data.indexOf("$") >= -1) {
           position = data.split("$")[0];
